@@ -70,6 +70,16 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.2;text-wrap:ba
 .facts dd{margin:2px 0 0}
 .monogram{width:72px;height:72px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--display);font-size:28px;font-weight:600;margin-bottom:16px}
 
+.brief{padding:36px 0 8px}
+.brief h2{font-size:28px;margin-bottom:6px}
+.brief-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px}
+.hl{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--accent);border-radius:8px;padding:16px;text-decoration:none;color:var(--ink)}
+.hl:hover{border-color:var(--accent)}
+.hl .v{font-family:var(--mono);font-size:20px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.2}
+.hl .l{font-size:14px;line-height:1.45}
+.hl .w{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:auto}
+@media (max-width:860px){.brief-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.brief-grid{grid-template-columns:1fr}}
 /* Index of work */
 .index{padding:40px 0 8px}
 .index h2,.section-h{font-size:28px;margin-bottom:6px}
@@ -172,7 +182,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="wrap intro-grid">
       <div>
         <p class="kicker">Strategy · Operations · Applied analytics</p>
-        <h1>Engineering rigor for operations and strategy decisions.</h1>
+        <h1>Making operations measurable and decisions defensible.</h1>
         <p class="lede">I am completing a double MSc in Supply Chain &amp; Operations Management (University of Illinois Chicago) and Management Engineering (Politecnico di Milano), graduating in 2027.</p>
         <p>I enjoy the work between the spreadsheet and the meeting room: understanding how a process really runs, measuring what it costs, building a business case people can trust, and checking that every number holds up, including the ones AI produces. Below are eight projects, each with my role stated plainly.</p>
         <div class="actions">
@@ -191,6 +201,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <div><dt>Languages</dt><dd>Italian (native), English (C1), Spanish and French (basic)</dd></div>
         </dl>
       </aside>
+    </div>
+  </section>
+
+  <section class="brief" id="brief">
+    <div class="wrap">
+      <h2>In brief</h2>
+      <p class="sub">An engineer by training who enjoys the business side of operations. I am at my best when a problem needs both a model and a conversation: interviewing the people who run a process, testing a change with data before proposing it, and presenting the case to decision-makers. I have led teams in several of the projects below, and I use AI regularly while making sure its outputs are verified.</p>
+      <div class="brief-grid">
+        <a class="hl" href="#loreal"><span class="v">Semi-finalist</span><span class="l">Italian national round of L’Oréal Brandstorm 2026, after pitching a new luxury fragrance concept to L’Oréal managers</span><span class="w">L’Oréal · Maison Margiela</span></a>
+        <a class="hl" href="#logiflex"><span class="v">€457K → ~€2.5M</span><span class="l">Investment and three-year NPV of an operating-model redesign tested with 1,000 Monte Carlo simulations</span><span class="w">Process redesign</span></a>
+        <a class="hl" href="#spc"><span class="v">20% → 93%</span><span class="l">Defect detection with zero false alarms, from the advanced method I proposed and built in Python</span><span class="w">Applied analytics</span></a>
+        <a class="hl" href="#socomec"><span class="v">30/30 cum laude</span><span class="l">Field study I led with a team of seven, interviewing four Socomec executives on digital transformation</span><span class="w">Leadership</span></a>
+      </div>
     </div>
   </section>
 
