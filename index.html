@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alessandro Morabito – Portfolio</title>
+<meta name="description" content="Selected work in strategy, operations and applied analytics by Alessandro Morabito, double MSc candidate at UIC and Politecnico di Milano.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout idea: a single reading column of case studies, each opening with a one-line verdict and a data panel built from the project's own numbers. */
+  --paper:#F5F6F8;
+  --surface:#FFFFFF;
+  --ink:#121A2A;
+  --muted:#586274;
+  --rule:#DCE0E7;
+  --accent:#1E44A3;
+  --accent-soft:#E6ECF8;
+  --signal:#B26A12;
+  --good:#1D7A52;
+  --display:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --body:"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E131C;--surface:#151C28;--ink:#E7EBF2;--muted:#9AA4B5;--rule:#283244;
+    --accent:#8FAEF5;--accent-soft:#1C2A47;--signal:#E3A04E;--good:#5CC496;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E131C;--surface:#151C28;--ink:#E7EBF2;--muted:#9AA4B5;--rule:#283244;
+  --accent:#8FAEF5;--accent-soft:#1C2A47;--signal:#E3A04E;--good:#5CC496;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.2;text-wrap:balance;margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* Top bar */
+.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;flex-wrap:wrap}
+.top .mark{font-family:var(--display);font-weight:600;font-size:18px;color:var(--ink);text-decoration:none}
+.top nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+.top nav a{color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--ink)}
+
+/* Intro */
+.intro{padding:56px 0 40px;border-bottom:1px solid var(--rule)}
+.intro-grid{display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start}
+.kicker{font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;margin:0 0 14px}
+.intro h1{font-size:clamp(34px,5vw,50px);margin-bottom:18px}
+.intro .lede{font-size:19px;max-width:62ch;margin:0 0 14px}
+.intro p{max-width:65ch;color:var(--muted);margin:0 0 10px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--accent);border-radius:6px;font-weight:500;font-size:15px;text-decoration:none}
+.btn.primary{background:var(--accent);color:var(--surface)}
+.btn.ghost{color:var(--accent);background:transparent}
+.facts{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:18px 20px;font-size:14px}
+.facts dl{margin:0;display:grid;gap:12px}
+.facts dt{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.facts dd{margin:2px 0 0}
+.monogram{width:72px;height:72px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--display);font-size:28px;font-weight:600;margin-bottom:16px}
+
+/* Index of work */
+.index{padding:40px 0 8px}
+.index h2,.section-h{font-size:28px;margin-bottom:6px}
+.sub{color:var(--muted);margin:0 0 22px;max-width:65ch}
+.index-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.index-list li{border-bottom:1px solid var(--rule)}
+.index-list a{display:grid;grid-template-columns:44px 1fr auto;gap:16px;padding:14px 4px;text-decoration:none;color:var(--ink);align-items:baseline}
+.index-list a:hover{background:var(--surface)}
+.index-list .n{font-family:var(--mono);color:var(--muted);font-size:13px}
+.index-list .t{font-weight:600}
+.index-list .t span{display:block;font-weight:400;color:var(--muted);font-size:14px}
+.index-list .r{font-family:var(--mono);font-size:13px;color:var(--signal);text-align:right;white-space:nowrap}
+
+/* Case study */
+.case{padding:56px 0;border-bottom:1px solid var(--rule)}
+.case-head{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;margin-bottom:18px}
+.case-head .tag{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:0 0 8px}
+.case h2{font-size:clamp(26px,3.4vw,34px)}
+.verdict{font-size:18px;max-width:68ch;margin:14px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;max-width:300px}
+.chip{font-family:var(--mono);font-size:12px;border:1px solid var(--rule);background:var(--surface);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.case-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:36px;margin-top:28px}
+.block h3{font-family:var(--body);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 8px}
+.block{margin-bottom:22px}
+.block p{margin:0 0 10px;max-width:65ch}
+.block ul{margin:0;padding-left:18px}
+.block li{margin-bottom:6px}
+.role{background:var(--accent-soft);border-left:3px solid var(--accent);padding:14px 16px;border-radius:0 6px 6px 0}
+.role p{margin:0}
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.metric{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px}
+.metric .v{font-family:var(--mono);font-size:22px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1.2}
+.metric .v .arrow{color:var(--muted);font-size:16px;padding:0 4px}
+.metric .v .to{color:var(--good)}
+.metric .l{font-size:13.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px 16px 10px;margin-bottom:16px}
+.panel .ptitle{font-weight:600;font-size:14.5px;margin:0 0 2px}
+.panel .pnote{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+.panel svg{display:block;width:100%;height:auto}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:6px 0 4px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.source{font-size:12.5px;color:var(--muted);margin-top:8px}
+
+/* Compact cases */
+.more{padding:56px 0;border-bottom:1px solid var(--rule)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.card .tag{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:0}
+.card h3{font-size:21px}
+.card p{margin:0;font-size:15px}
+.card .myrole{font-size:14px;color:var(--muted)}
+.card .myrole b{color:var(--ink);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:4px}
+.kpis > div{border-top:2px solid var(--accent);padding-top:6px}
+.kpis .v{font-family:var(--mono);font-size:17px;font-variant-numeric:tabular-nums}
+.kpis .l{font-size:12.5px;color:var(--muted);line-height:1.35}
+
+/* Background */
+.bg{padding:56px 0}
+.bg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px}
+.timeline{list-style:none;margin:0;padding:0}
+.timeline li{padding:12px 0;border-bottom:1px solid var(--rule)}
+.timeline .w{font-weight:600}
+.timeline .d{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.timeline p{margin:4px 0 0;font-size:14.5px;color:var(--muted)}
+.creds{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.creds li{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;border-bottom:1px solid var(--rule);padding:8px 0}
+.creds a{font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+footer{border-top:1px solid var(--rule);padding:32px 0 48px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .intro-grid,.case-grid,.bg-grid,.cards{grid-template-columns:1fr}
+  .case-head{grid-template-columns:1fr}
+  .chips{justify-content:flex-start;max-width:none}
+}
+@media (max-width:420px){
+  .wrap{padding:0 16px}
+  .metrics,.kpis{grid-template-columns:1fr 1fr}
+  .index-list a{grid-template-columns:32px 1fr}
+  .index-list .r{grid-column:2;text-align:left}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">Alessandro Morabito</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="intro">
+    <div class="wrap intro-grid">
+      <div>
+        <p class="kicker">Strategy · Operations · Applied analytics</p>
+        <h1>Engineering rigor for operations and strategy decisions.</h1>
+        <p class="lede">I am completing a double MSc in Supply Chain &amp; Operations Management (University of Illinois Chicago) and Management Engineering (Politecnico di Milano), graduating in 2027.</p>
+        <p>I enjoy the work between the spreadsheet and the meeting room: understanding how a process really runs, measuring what it costs, building a business case people can trust, and checking that every number holds up, including the ones AI produces. Below are eight projects, each with my role stated plainly.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://drive.google.com/file/d/1wkWHasL07dtXlCyH6OtrCF81lxwLSBH4/view?usp=drivesdk">View résumé</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/alessandro-morabito/">LinkedIn</a>
+          <a class="btn ghost" href="#contact">Contact</a>
+        </div>
+      </div>
+      <aside class="facts" aria-label="Key facts">
+        <div class="monogram" aria-hidden="true">AM</div>
+        <dl>
+          <div><dt>Based in</dt><dd>Chicago, Illinois</dd></div>
+          <div><dt>Education</dt><dd>MSc SCOM, UIC Business School<br>MSc Management Engineering, Politecnico di Milano</dd></div>
+          <div><dt>Available</dt><dd>Full-time from June 2027</dd></div>
+          <div><dt>Toolkit</dt><dd>Python, SQL, R, Excel modeling, SAP Signavio (BPMN), GenAI</dd></div>
+          <div><dt>Languages</dt><dd>Italian (native), English (C1), Spanish and French (basic)</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="index" id="work">
+    <div class="wrap">
+      <h2>Selected work</h2>
+      <p class="sub">Four in-depth case studies, then four shorter ones. All are academic team projects; two involved real companies and their executives.</p>
+      <ol class="index-list">
+        <li><a href="#logiflex"><span class="n">01</span><span class="t">Operating-model redesign and business case<span>Logiflex, last-mile delivery · Capstone</span></span><span class="r">~€2.5M NPV by Year 3</span></a></li>
+        <li><a href="#spc"><span class="n">02</span><span class="t">Anomaly detection with a controlled false-alarm rate<span>Image-based statistical process control · Python</span></span><span class="r">20% → 93% detection</span></a></li>
+        <li><a href="#genai"><span class="n">03</span><span class="t">Financial benchmarking and a GenAI audit<span>Pirelli vs. Michelin and Hankook, 2022–2024 · Project lead</span></span><span class="r">9 annual reports analyzed</span></a></li>
+        <li><a href="#newco"><span class="n">04</span><span class="t">Designing a mass-customization plant from scratch<span>NEWCO custom toolbox · Operations Management</span></span><span class="r">3.6-min takt, same-day shipping</span></a></li>
+        <li><a href="#more"><span class="n">05–08</span><span class="t">L’Oréal Brandstorm, Socomec, CATI warehouse, Gerosa Group<span>Go-to-market, leadership, logistics, strategy</span></span><span class="r">National semi-finalist</span></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 01 LOGIFLEX -->
+  <article class="case" id="logiflex">
+    <div class="wrap">
+      <div class="case-head">
+        <div>
+          <p class="tag">01 · Capstone, Laboratory of Analysis and Modeling of Processes · Politecnico di Milano</p>
+          <h2>Redesigning a €50M delivery provider, and proving it pays back in Year 2</h2>
+          <p class="verdict">At a furniture delivery-and-assembly company, rescheduled deliveries were eroding service and slowing revenue growth. We rebuilt its processes, organization and information system, then tested the redesign on its own data before asking for a single euro.</p>
+        </div>
+        <div class="chips"><span class="chip">Team of 5</span><span class="chip">Process redesign</span><span class="chip">Monte Carlo</span><span class="chip">NPV</span><span class="chip">SAP Signavio</span></div>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="block">
+            <h3>The problem</h3>
+            <p>Logiflex delivers and assembles furniture through several local hubs. Crews were sized only quarter by quarter and often did not match the weekly delivery plan, deliveries were rescheduled for transport, assembly and customer-side reasons, and nobody owned the process end to end. The case is didactic: inspired by a real company, with course-provided operating data.</p>
+          </div>
+          <div class="block role">
+            <h3>My role</h3>
+            <p>I led the redesign of the processes: introducing new value-added steps, retiring obsolete ones, and restructuring the organization around process owners. I designed the integrated cloud system for internal file management, mapped the TO-BE processes in SAP Signavio, and worked on the financial feasibility (Monte Carlo and NPV), the KPI dashboard and the technology risk assessment.</p>
+          </div>
+          <div class="block">
+            <h3>What we did</h3>
+            <ul>
+              <li>Cleaned 1,483 crew-month records down to 1,390 and fitted empirical distributions for each rescheduling cause.</li>
+              <li>Ran 1,000 Monte Carlo simulations of the AS-IS and TO-BE processes to measure service effectiveness (customers served ÷ delivery requests).</li>
+              <li>Redesigned planning: quarterly crew, fleet and equipment sizing per hub, re-forecast monthly, tracked by a forecast-accuracy KPI.</li>
+              <li>Built a 7-KPI dashboard with owners and targets, and scored the redesign’s impact at 3.76 out of 5.</li>
+              <li>Sized the investment at €457K within a €500K budget and modeled NPV at a 10% cost of capital, with sensitivity analysis.</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="metrics">
+            <div class="metric"><div class="v num">89.6%<span class="arrow">→</span><span class="to">94.4%</span></div><div class="l">Mean simulated service effectiveness, AS-IS to TO-BE</div></div>
+            <div class="metric"><div class="v num">8.0<span class="arrow">→</span><span class="to">4.5</span></div><div class="l">Rescheduled deliveries per crew-month</div></div>
+            <div class="metric"><div class="v num">€457K</div><div class="l">Investment, payback in Year 2</div></div>
+            <div class="metric"><div class="v num">€2.49M</div><div class="l">Cumulative NPV at end of Year 3</div></div>
+          </div>
+          <div class="panel">
+            <p class="ptitle">Share of simulated months by service effectiveness</p>
+            <p class="pnote">1,000 Monte Carlo runs each. TO-BE runs at or above 95% rise from 17.7% to 48.2%.</p>
+            <div id="chart-mc"></div>
+            <div class="legend"><span><i style="background:var(--muted)"></i>AS-IS</span><span><i style="background:var(--accent)"></i>TO-BE</span></div>
+          </div>
+          <div class="panel">
+            <p class="ptitle">Cumulative NPV of the redesign (€ thousands)</p>
+            <p class="pnote">10% cost of capital; includes the terminal value of the information system.</p>
+            <div id="chart-npv"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 02 SPC -->
+  <article class="case" id="spc">
+    <div class="wrap">
+      <div class="case-head">
+        <div>
+          <p class="tag">02 · Quality Data Analysis · Politecnico di Milano</p>
+          <h2>Catching 14 of 15 defects without a single false alarm</h2>
+          <p class="verdict">The brief came from an off-Earth manufacturing scenario: robotic 3D printing of composite structures in orbit or on the Moon, where no technician can inspect the parts. We had to turn camera images into metrics and control charts that flag defects on their own. The core difficulty is one every risk team knows: more sensors mean more false alarms, unless you control the error rate across all of them.</p>
+        </div>
+        <div class="chips"><span class="chip">Team of 4</span><span class="chip">Top score</span><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">SVD / PCA</span><span class="chip">Hotelling T²</span></div>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="block">
+            <h3>The problem</h3>
+            <p>We calibrated on a training set of 132 images of in-control printing, then faced a blind test set of 23 images containing 15 real structural defects. The first design, with each chart tuned on its own, caught only 3 of the 15.</p>
+          </div>
+          <div class="block role">
+            <h3>My role</h3>
+            <p>The team developed two methodologies: a simpler one based on the course material, and an advanced one drawn from the academic papers we were given. I proposed the advanced approach and built it from the start, from the image pipeline to the multi-chart network. It became the foundation of our final system, which received the top score.</p>
+          </div>
+          <div class="block">
+            <h3>What we did</h3>
+            <ul>
+              <li>Built an image pipeline in Python (OpenCV, NumPy, SciPy, statsmodels) with adaptive segmentation that follows the printed layers frame by frame.</li>
+              <li>Combined five complementary charts: a non-parametric ECDF band, interface-valley depths, Laplacian texture, SVD/PCA residuals and a Hotelling T² on layer gradients.</li>
+              <li>Controlled the family-wise error rate across all charts with a Šidák correction, setting the trade-off between missed defects and false alarms explicitly.</li>
+              <li>Mapped which charts fire together to isolate the likely physical cause of each alarm.</li>
+              <li>Verified the assumptions behind the limits (Ljung-Box independence tests) and compared against a simpler textbook I-MR baseline.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h3>Why it matters beyond manufacturing</h3>
+            <p>The same logic applies to fraud, transaction and model monitoring: many detectors running in parallel, and a business that tolerates only a set number of false positives.</p>
+          </div>
+        </div>
+        <div>
+          <div class="metrics">
+            <div class="metric"><div class="v num">20%<span class="arrow">→</span><span class="to">93%</span></div><div class="l">Defects detected on blind test data (3/15 → 14/15)</div></div>
+            <div class="metric"><div class="v num">0</div><div class="l">False alarms on the in-control test images</div></div>
+          </div>
+          <div class="panel">
+            <p class="ptitle">Detection rate by design choice</p>
+            <p class="pnote">Same 15 blind defects. The overall false-alarm budget (FWER) is the lever we tuned.</p>
+            <div id="chart-spc"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 03 PIRELLI -->
+  <article class="case" id="genai">
+    <div class="wrap">
+      <div class="case-head">
+        <div>
+          <p class="tag">03 · Accounting, Finance &amp; Control · Politecnico di Milano</p>
+          <h2>What three years of tyre-maker financials say about strategy, and what an AI missed</h2>
+          <p class="verdict">We benchmarked Pirelli against Michelin and Hankook from their 2022–2024 annual reports, explaining the strategy behind every gap in the numbers. Then we ran the same analysis with a GenAI research tool and audited it against our evidence.</p>
+        </div>
+        <div class="chips"><span class="chip">Team of 6</span><span class="chip">Project lead</span><span class="chip">Financial analysis</span><span class="chip">Benchmarking</span><span class="chip">GenAI governance</span></div>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="block role">
+            <h3>My role</h3>
+            <p>I led the project and carried a large share of the analysis: gathering the data from nine annual reports and audited statements, studying and reclassifying the balance sheets, working out the causes behind each movement, and building the narrative that explains the numbers. I did the same for both benchmarks before pulling everything into the overall comparison, and worked on the prompt design and the final AI audit.</p>
+          </div>
+          <div class="block">
+            <h3>The financial analysis</h3>
+            <ul>
+              <li>Common-size and horizontal analysis of assets and liabilities, and reclassified balance sheets (net working capital, net financial debt) for all three companies.</li>
+              <li>Profitability (ROE, sustainable growth rate, EBITDA margin, ROCE), liquidity (quick ratio, capex coverage) and working capital (DSO, DPO), with a risk matrix of leverage against return on assets.</li>
+              <li>Each movement traced to a cause in the reports: Pirelli’s “local-for-local” plants raise capital intensity; Hankook’s centralized production drives economies of scale; Michelin trades volume for value.</li>
+              <li>Hankook’s figures converted from won at average annual rates, with ratios used wherever possible to stay currency-neutral.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h3>What we concluded</h3>
+            <p>Pirelli’s focus on high-value tyres pays off in margins, and it has deleveraged steadily, but liquidity is tight: a quick ratio below 1 and payables stretched to 176 days suggest suppliers are financing part of its working capital. Sustaining profitability while easing that pressure is its main challenge as competition in premium tyres intensifies.</p>
+          </div>
+          <div class="block">
+            <h3>The AI audit</h3>
+            <p>The AI reached similar headline conclusions but made two material errors. It called Pirelli’s liquidity “robust” from a current ratio slightly above 1, missing the quick ratio of about 0.7. It also treated Michelin as a pure high-value player, which it is not. Our recommendation: analysts lead data gathering, validation and interpretation; AI supports synthesis and communication. Never outsource understanding.</p>
+          </div>
+        </div>
+        <div>
+          <div class="metrics">
+            <div class="metric"><div class="v num">21.8%</div><div class="l">Pirelli EBITDA margin in 2024, up from 20.5%</div></div>
+            <div class="metric"><div class="v num">176 days</div><div class="l">Pirelli payables (DPO), vs. 79 at Michelin</div></div>
+            <div class="metric"><div class="v num">0.73</div><div class="l">Pirelli quick ratio, below 1 in all three years</div></div>
+            <div class="metric"><div class="v num">−17 pp</div><div class="l">Pirelli non-current borrowings, 2022–2024</div></div>
+          </div>
+          <div class="panel">
+            <p class="ptitle">EBITDA margin, 2022–2024</p>
+            <p class="pnote">Hankook’s centralized model overtook both European rivals by 2024.</p>
+            <div id="chart-ebitda"></div>
+            <div class="legend"><span><i style="background:var(--accent)"></i>Pirelli</span><span><i style="background:var(--muted)"></i>Michelin</span><span><i style="background:var(--signal)"></i>Hankook</span></div>
+          </div>
+          <div class="panel">
+            <p class="ptitle">Days payables outstanding</p>
+            <p class="pnote">Pirelli takes about twice as long as its peers to pay suppliers.</p>
+            <div id="chart-dpo"></div>
+            <div class="legend"><span><i style="background:var(--accent)"></i>Pirelli</span><span><i style="background:var(--muted)"></i>Michelin</span><span><i style="background:var(--signal)"></i>Hankook</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 04 NEWCO -->
+  <article class="case" id="newco">
+    <div class="wrap">
+      <div class="case-head">
+        <div>
+          <p class="tag">04 · Operations Management · Politecnico di Milano</p>
+          <h2>A factory that builds one-of-a-kind toolboxes at mass-production speed</h2>
+          <p class="verdict">Starting from a list of constraints, we found a market gap, designed the product and the online sales process, and sized every machine, buffer and operator of the plant behind it.</p>
+        </div>
+        <div class="chips"><span class="chip">Team of 4</span><span class="chip">Push-pull design</span><span class="chip">Capacity planning</span><span class="chip">Lean</span><span class="chip">Computer vision</span></div>
+      </div>
+      <div class="case-grid">
+        <div>
+          <div class="block">
+            <h3>The idea</h3>
+            <p>Professionals carry expensive tools in generic cases or fragile foam they cut by hand. NEWCO lets customers photograph their tools on an A4 sheet; computer vision extracts the outlines, and the plant mills a custom foam insert and prints the lid. Prices start at €129, €169 and €219 for small, medium and large cases.</p>
+          </div>
+          <div class="block role">
+            <h3>My role</h3>
+            <p>I played a central role across the whole project, which spanned the market analysis that identified the gap, the feasibility analysis, machine selection, production-time studies, replenishment at the decoupling point and material sourcing.</p>
+          </div>
+          <div class="block">
+            <h3>Key design choices</h3>
+            <ul>
+              <li>Target 0.1% of a ~30M-unit global market: 30,000 units a year, 120 a day, a takt time of 3.625 minutes.</li>
+              <li>Placed the customer order decoupling point at a supermarket of 15 standard shells (3 sizes × 5 colors), with reorder points at 3 days of coverage and an ABC rule with a 100-unit minimum batch for slow movers.</li>
+              <li>Upstream injection molding runs make-to-stock in batches; downstream CNC and UV printing run make-to-order, lot size one, with no manual setup.</li>
+              <li>Lean throughout: Jidoka quality gates, digital Kanban, SMED setups and a “water spider” for picking.</li>
+              <li>A 1,100 m² plant near Milan with 12 people, shipping same day for orders placed before 1:00 PM.</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="metrics">
+            <div class="metric"><div class="v num">30,000</div><div class="l">Units a year from a 1,100 m² plant</div></div>
+            <div class="metric"><div class="v num">3.6 min</div><div class="l">Takt time that every station is balanced against</div></div>
+          </div>
+          <div class="panel">
+            <p class="ptitle">Planned utilization by station</p>
+            <p class="pnote">Spare capacity is deliberate: it absorbs batch swings upstream and rework without missing the 3:30 PM pull time.</p>
+            <div id="chart-util"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 05-08 -->
+  <section class="more" id="more">
+    <div class="wrap">
+      <h2 class="section-h">More projects</h2>
+      <p class="sub">Shorter summaries of four projects in strategy, leadership and logistics.</p>
+      <div class="cards">
+        <article class="card" id="loreal">
+          <p class="tag">05 · L’Oréal Brandstorm 2026 · Strategy &amp; Marketing</p>
+          <h3>Eternal Memory: a fragrance made from the scent of a cherished object</h3>
+          <p>A concept for Maison Margiela’s REPLICA line: L’Oréal’s Osmobloom technology captures the scent of a personal object, which is then turned into a bespoke perfume. A €450 “Archive Kit” is followed by €180 home-delivered refills ordered through a QR code.</p>
+          <p class="myrole"><b>Team of 3 · My role:</b> came up with the concept, how to deliver it and the choice of Maison Margiela; managed the relationships with our professors and the L’Oréal contacts; built the customer journey and the financial feasibility analysis.</p>
+          <div class="kpis">
+            <div><div class="v">Semi-final</div><div class="l">Italian national round, after pitching to L’Oréal managers</div></div>
+            <div><div class="v">€2.63M</div><div class="l">Launch investment, break-even at ~11.7K units</div></div>
+            <div><div class="v">€2.2M→€11.7M</div><div class="l">Revenue, Year 1 to Year 4</div></div>
+          </div>
+        </article>
+        <article class="card" id="socomec">
+          <p class="tag">06 · Leadership &amp; Innovation · Politecnico di Milano</p>
+          <h3>How Socomec moved from selling hardware to selling uptime</h3>
+          <p>A field study of SoLink, Socomec’s connected service for UPS systems in data centers and hospitals: how a century-old manufacturer shifted to remote, predictive maintenance, and how leadership brought a multi-generational workforce along.</p>
+          <p class="myrole"><b>Team of 7, team lead · My role:</b> managed the relationships with our professors and the company, conducted the executive interviews, and led the analysis of how technology change and leadership style interacted.</p>
+          <div class="kpis">
+            <div><div class="v">4</div><div class="l">Executives interviewed, incl. the Managing Director Italy</div></div>
+            <div><div class="v">~2,500</div><div class="l">Connected units under the new service model</div></div>
+            <div><div class="v">30/30 cum laude</div><div class="l">Final grade</div></div>
+          </div>
+        </article>
+        <article class="card" id="cati">
+          <p class="tag">07 · Logistics Management · Real company</p>
+          <h3>Unblocking the inbound flow of an automotive spare-parts warehouse</h3>
+          <p>At CATI’s 5,600 m² warehouse near Florence, interviews with operators showed that receiving had become a storage area. We redesigned prioritization, allocation and forklift missions using systems the company already owned.</p>
+          <p class="myrole"><b>Team of 3 · My role:</b> worked across every phase, leading the redesign of operations and the KPI control dashboard.</p>
+          <div class="panel" style="margin:4px 0 0">
+            <p class="ptitle">AS-IS vs. target</p>
+            <div id="chart-cati"></div>
+            
+          </div>
+          <p class="source">Zero-CAPEX plan scored 3.80 out of 5 on weighted KPI impact, scalable to a 10-warehouse network.</p>
+        </article>
+        <article class="card" id="gerosa">
+          <p class="tag">08 · Strategic Business Decisions · Politecnico di Milano</p>
+          <h3>A strategy map and Balanced Scorecard for a €258M packaging group</h3>
+          <p>We analyzed Gerosa Group’s strategy and 2019–2022 financials, benchmarked ROE, ROI and ROS against market medians, and translated the strategy into a strategy map and a quantitative Balanced Scorecard. The SWOT flagged commodity and interest-rate exposure.</p>
+          <p class="myrole"><b>Team of 3 · My role:</b> contributed to every phase, from the financial analysis to the scorecard, using AI to parse the financial and ESG reports.</p>
+          <div class="kpis">
+            <div><div class="v">€258M</div><div class="l">Group revenue analyzed (2022)</div></div>
+            <div><div class="v">2019–2022</div><div class="l">Financial period analyzed</div></div>
+            <div><div class="v">ROE·ROI·ROS</div><div class="l">Benchmarked against market medians</div></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="more" id="approach">
+    <div class="wrap">
+      <h2 class="section-h">How I like to work</h2>
+      <p class="sub">The habits that run through these projects.</p>
+      <div class="cards">
+        <div class="card"><h3>Start where the work happens</h3><p>I prefer to understand a process from the people who run it. At CATI that meant interviewing warehouse operators; at Socomec, the Managing Director and his team.</p></div>
+        <div class="card"><h3>Let the numbers make the case</h3><p>Before recommending a change, I try to test it: simulating the redesign at Logiflex, sizing every station at NEWCO, tracing each ratio at Pirelli back to its cause.</p></div>
+        <div class="card"><h3>Use AI, then check it</h3><p>I use generative AI regularly, in my job at UIC and in my studies, and I have learned to verify what it produces against the source before relying on it.</p></div>
+        <div class="card"><h3>Bring the team together</h3><p>Eighteen years as a soccer team captain taught me to coordinate different people toward one result. I have led several of the teams above, and I value honest feedback in both directions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg" id="background">
+    <div class="wrap bg-grid">
+      <div>
+        <h2 class="section-h">Background</h2>
+        <ul class="timeline">
+          <li><div class="w">MSc Supply Chain &amp; Operations Management</div><div class="d">University of Illinois Chicago, Business School · 2025–May 2027</div><p>Double degree. Coursework includes Foundations of Analytics and AI for Supply Chain, Data Mining for Business, Supply Chain Management.</p></li>
+          <li><div class="w">MSc Management Engineering, major in Supply Chain Management</div><div class="d">Politecnico di Milano · 2025–Jul 2027</div><p>Double degree. Machine Learning, Applied Statistics, Quality Data Analysis, Operations and Logistics Management.</p></li>
+          <li><div class="w">BSc Management Engineering</div><div class="d">Politecnico di Milano · 2022–2025</div></li>
+          <li><div class="w">Graduate Hourly, International Recruitment &amp; Marketing Ambassador</div><div class="d">UIC Business School, Corporate MBA Program Office · Oct 2026–present</div><p>Consolidated recruitment and marketing assets with generative AI and Box AI; advise prospective international candidates.</p></li>
+          <li><div class="w">Team captain, 18 years of semi-professional soccer</div><div class="d">Italy</div></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="section-h">Credentials</h2>
+        <ul class="creds">
+          <li><span>UIC Professional Credential: Google AI Certification</span><span class="d" style="font-family:var(--mono);font-size:12.5px;color:var(--muted)">Oct 2026</span></li>
+          <li><span>Introduction to AI (Google, Coursera)</span><a href="https://coursera.org/verify/XL021RS0V4WJ">Verify</a></li>
+          <li><span>AI Fundamentals (Google, Coursera)</span><a href="https://coursera.org/verify/ACLT0ILUGY76">Verify</a></li>
+          <li><span>Maximize Productivity With AI Tools (Google, Coursera)</span><a href="https://coursera.org/verify/7DLXPM5FH2XZ">Verify</a></li>
+          <li><span>Discover the Art of Prompting (Google, Coursera)</span><a href="https://coursera.org/verify/3C91AJG338XH">Verify</a></li>
+          <li><span>AI for Brainstorming and Planning (Google, Coursera)</span><a href="https://coursera.org/verify/16FQ9NPZ6P45">Verify</a></li>
+          <li><span>AI for Research and Insights (Google, Coursera)</span><a href="https://coursera.org/verify/L8CVQMJ2QIMC">Verify</a></li>
+          <li><span>IELTS Academic 8.0 / 9.0 (CEFR C1)</span><span></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div>
+      <div style="font-family:var(--display);font-size:20px;color:var(--ink);font-weight:600">Let’s talk.</div>
+      <div>Email: <a href="mailto:alemorabito4@gmail.com">alemorabito4@gmail.com</a></div>
+      <div>LinkedIn: <a href="https://www.linkedin.com/in/alessandro-morabito/">linkedin.com/in/alessandro-morabito</a></div>
+    </div>
+    <div style="align-self:end">Full project reports available on request.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent, text){
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (text !== undefined) e.textContent = text;
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function svg(id, w, h, label){
+    const host = document.getElementById(id);
+    host.innerHTML = "";
+    return el("svg", {viewBox:`0 0 ${w} ${h}`, role:"img", "aria-label":label}, host);
+  }
+  const font = "IBM Plex Mono, ui-monospace, monospace";
+
+  function drawMC(){
+    const asis=[6,14,24,47,69,147,205,233,182,61], tobe=[0,1,2,1,13,30,102,233,390,226];
+    const labels=["70","73","76","79","82","85","88","91","94","97"];
+    const W=460,H=210,L=36,R=18,T=10,B=34, max=40;
+    const s=svg("chart-mc",W,H,"Histogram of simulated service effectiveness, AS-IS versus TO-BE");
+    const pw=W-L-R, ph=H-T-B, bw=pw/10;
+    [0,10,20,30,40].forEach(v=>{const y=T+ph-(v/max)*ph;el("line",{x1:L,x2:W-R,y1:y,y2:y,stroke:css("--rule"),"stroke-width":1},s);el("text",{x:L-6,y:y+4,"text-anchor":"end","font-size":11,fill:css("--muted"),"font-family":font},s,v+"%");});
+    asis.forEach((v,i)=>{const p=v/10, h=(p/max)*ph, x=L+i*bw+bw*0.12;el("rect",{x,y:T+ph-h,width:bw*0.36,height:h,fill:css("--muted"),opacity:.55,rx:1.5},s);});
+    tobe.forEach((v,i)=>{const p=v/10, h=(p/max)*ph, x=L+i*bw+bw*0.5;el("rect",{x,y:T+ph-h,width:bw*0.36,height:h,fill:css("--accent"),rx:1.5},s);});
+    labels.forEach((t,i)=>{el("text",{x:L+i*bw,y:H-B+16,"text-anchor":"middle","font-size":11,fill:css("--muted"),"font-family":font},s,t);});el("text",{x:L+10*bw,y:H-B+16,"text-anchor":"middle","font-size":11,fill:css("--muted"),"font-family":font},s,"100");
+    el("text",{x:L+pw/2,y:H-4,"text-anchor":"middle","font-size":11,fill:css("--muted"),"font-family":font},s,"Service effectiveness (%)");
+  }
+  function drawNPV(){
+    const d=[["Y0",-457],["Y1",-135],["Y2",629],["Y3",2493]];
+    const W=460,H=190,L=46,R=12,T=16,B=26,min=-600,max=2600;
+    const s=svg("chart-npv",W,H,"Cumulative NPV by year: minus 457 in Year 0, minus 135 in Year 1, 629 in Year 2, 2,493 in Year 3, in thousands of euros");
+    const pw=W-L-R, ph=H-T-B, y=v=>T+ph-((v-min)/(max-min))*ph, bw=pw/4;
+    [-500,0,1000,2000].forEach(v=>{el("line",{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:v===0?css("--muted"):css("--rule"),"stroke-width":1},s);el("text",{x:L-6,y:y(v)+4,"text-anchor":"end","font-size":11,fill:css("--muted"),"font-family":font},s,v.toLocaleString("en-US"));});
+    d.forEach(([k,v],i)=>{const x=L+i*bw+bw*0.25,w=bw*0.5,top=Math.min(y(v),y(0)),h=Math.abs(y(v)-y(0));
+      el("rect",{x,y:top,width:w,height:h,fill:v<0?css("--signal"):css("--accent"),rx:2},s);
+      el("text",{x:x+w/2,y:v<0?y(v)+14:y(v)-5,"text-anchor":"middle","font-size":11.5,fill:css("--ink"),"font-family":font},s,(v<0?"−":"")+Math.abs(v).toLocaleString("en-US"));
+      el("text",{x:x+w/2,y:H-8,"text-anchor":"middle","font-size":11,fill:css("--muted"),"font-family":font},s,k);});
+  }
+  function drawSPC(){
+    const d=[["Charts tuned one by one",20,"3/15"],["Network, FWER 1%",53.3,"8/15"],["Network, FWER 5%",66.7,"10/15"],["Network, FWER 10%",93.3,"14/15"]];
+    const W=460,H=200,L=168,R=84,T=8,B=24;
+    const s=svg("chart-spc",W,H,"Detection rate: 20% with charts tuned one by one, 53% at 1% FWER, 67% at 5% FWER, 93% at 10% FWER");
+    const pw=W-L-R, rh=(H-T-B)/d.length, x=v=>L+(v/100)*pw;
+    [0,25,50,75,100].forEach(v=>{el("line",{x1:x(v),x2:x(v),y1:T,y2:H-B,stroke:css("--rule"),"stroke-width":1},s);el("text",{x:x(v),y:H-6,"text-anchor":"middle","font-size":11,fill:css("--muted"),"font-family":font},s,v+"%");});
+    d.forEach(([k,v,f],i)=>{const yy=T+i*rh+rh*0.2,h=rh*0.6, last=i===d.length-1;
+      el("text",{x:L-8,y:yy+h/2+4,"text-anchor":"end","font-size":12,fill:css("--ink"),"font-family":"IBM Plex Sans, Arial, sans-serif"},s,k);
+      el("rect",{x:L,y:yy,width:x(v)-L,height:h,fill:last?css("--accent"):css("--muted"),opacity:last?1:.5,rx:2},s);
+      el("text",{x:x(v)+6,y:yy+h/2+4,"font-size":11.5,fill:css("--ink"),"font-family":font},s,Math.round(v)+"% · "+f);});
+  }
+  function drawUtil(){
+    const d=[["Injection press",43.1],["Molding technician",57],["CNC routers (×3)",63.9],["UV printer",70],["End-of-line operator",70.6],["Water spider",36.8]];
+    const W=460,H=230,L=150,R=48,T=8,B=24;
+    const s=svg("chart-util",W,H,"Planned utilization by station, between 37% and 71%");
+    const pw=W-L-R, rh=(H-T-B)/d.length, x=v=>L+(v/100)*pw;
+    [0,25,50,75,100].forEach(v=>{el("line",{x1:x(v),x2:x(v),y1:T,y2:H-B,stroke:css("--rule"),"stroke-width":1},s);el("text",{x:x(v),y:H-6,"text-anchor":"middle","font-size":11,fill:css("--muted"),"font-family":font},s,v+"%");});
+    d.forEach(([k,v],i)=>{const yy=T+i*rh+rh*0.22,h=rh*0.56;
+      el("text",{x:L-8,y:yy+h/2+4,"text-anchor":"end","font-size":12,fill:css("--ink"),"font-family":"IBM Plex Sans, Arial, sans-serif"},s,k);
+      el("rect",{x:L,y:yy,width:pw,height:h,fill:css("--accent-soft"),rx:2},s);
+      el("rect",{x:L,y:yy,width:x(v)-L,height:h,fill:css("--accent"),rx:2},s);
+      el("text",{x:x(v)+6,y:yy+h/2+4,"font-size":11.5,fill:css("--ink"),"font-family":font},s,v.toFixed(1).replace(".0","")+"%");});
+  }
+  function drawCATI(){
+    const d=[["Staging saturation",115,80],["Re-handling",45,15],["Overtime share",12,5]];
+    const W=420,H=130,L=118,R=44,T=6,B=18,max=120;
+    const s=svg("chart-cati",W,H,"AS-IS versus target: staging saturation 115% vs 80%, re-handling 45% vs 15%, overtime 12% vs 5%");
+    const pw=W-L-R, rh=(H-T-B)/d.length, x=v=>L+(v/max)*pw;
+    d.forEach(([k,v,t],i)=>{const yy=T+i*rh+rh*0.18,h=rh*0.64;
+      el("text",{x:L-8,y:yy+h/2+4,"text-anchor":"end","font-size":12,fill:css("--ink"),"font-family":"IBM Plex Sans, Arial, sans-serif"},s,k);
+      el("rect",{x:L,y:yy,width:x(v)-L,height:h,fill:css("--signal"),rx:2},s);
+      el("line",{x1:x(t),x2:x(t),y1:yy-3,y2:yy+h+3,stroke:css("--ink"),"stroke-width":2},s);
+      el("text",{x:x(v)+6,y:yy+h/2+4,"font-size":11.5,fill:css("--ink"),"font-family":font},s,v+"%");});
+    el("text",{x:L,y:H-2,"font-size":11,fill:css("--muted"),"font-family":font},s,"Vertical mark = target ceiling");
+  }
+  function drawLines(id,series,years,min,max,ticks,fmt,label){
+    const W=460,H=200,L=40,R=58,T=12,B=26;
+    const s=svg(id,W,H,label);
+    const pw=W-L-R, ph=H-T-B, x=i=>L+i*(pw/(years.length-1)), y=v=>T+ph-((v-min)/(max-min))*ph;
+    ticks.forEach(v=>{el("line",{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:css("--rule"),"stroke-width":1},s);el("text",{x:L-6,y:y(v)+4,"text-anchor":"end","font-size":11,fill:css("--muted"),"font-family":font},s,fmt(v));});
+    years.forEach((t,i)=>el("text",{x:x(i),y:H-6,"text-anchor":"middle","font-size":11,fill:css("--muted"),"font-family":font},s,t));
+    series.forEach(([name,vals,color])=>{
+      el("polyline",{points:vals.map((v,i)=>x(i)+","+y(v)).join(" "),fill:"none",stroke:css(color),"stroke-width":2.5},s);
+      vals.forEach((v,i)=>el("circle",{cx:x(i),cy:y(v),r:i===vals.length-1?4:3,fill:css(color)},s));
+      const lv=vals[vals.length-1];
+      el("text",{x:x(vals.length-1)+8,y:y(lv)+4,"font-size":11.5,fill:css("--ink"),"font-family":font},s,fmt(lv));
+    });
+  }
+  function drawEBITDA(){
+    drawLines("chart-ebitda",[["Pirelli",[20.53,21.00,21.82],"--accent"],["Michelin",[17.37,16.44,17.34],"--muted"],["Hankook",[14.79,20.51,24.20],"--signal"]],["2022","2023","2024"],12,26,[12,16,20,24],v=>v.toFixed(1)+"%","EBITDA margin 2022 to 2024: Pirelli 20.5 to 21.8 percent, Michelin 17.4 to 17.3, Hankook 14.8 to 24.2");
+  }
+  function drawDPO(){
+    drawLines("chart-dpo",[["Pirelli",[159.65,169.45,176.13],"--accent"],["Hankook",[68.48,88.77,90.11],"--signal"],["Michelin",[76.07,72.61,79.17],"--muted"]],["2022","2023","2024"],40,200,[50,100,150,200],v=>Math.round(v)+"",
+      "Days payables outstanding 2022 to 2024: Pirelli 160 to 176, Hankook 68 to 90, Michelin 76 to 79");
+  }
+  function drawAll(){drawMC();drawNPV();drawSPC();drawUtil();drawCATI();drawEBITDA();drawDPO();}
+  drawAll();
+  if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+  new MutationObserver(drawAll).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+})();
+</script>
+</body>
+</html>
