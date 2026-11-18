@@ -121,11 +121,6 @@ figcaption b{color:var(--ink);font-weight:600}
 .ai-vs .bad{border-left:3px solid var(--signal)}
 .ai-vs .ok{border-left:3px solid var(--good)}
 
-.talk{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
-.talk li{display:grid;grid-template-columns:90px 1fr;gap:16px;padding:14px 4px;border-bottom:1px solid var(--rule)}
-.talk .t{font-family:var(--mono);font-size:13px;color:var(--accent)}
-.talk b{display:block}
-.talk span{color:var(--muted);font-size:14.5px}
 
 .others{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .others a{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px;text-decoration:none;color:var(--ink);font-size:14.5px}
@@ -143,7 +138,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .wrap{padding:0 16px}
   .metrics{grid-template-columns:1fr 1fr}
   .ai-vs{grid-template-columns:1fr}
-  .talk li{grid-template-columns:1fr;gap:2px}
 }
 @media print{
   .top,.actions,.evidence{display:none}
@@ -161,7 +155,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <a href="#thread">The thread</a>
       <a href="#map">Areas</a>
       <a href="#projects">Projects</a>
-      <a href="#talk">Talk</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -391,20 +384,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       </div>
     </div>
   </article>
-
-  <section class="block-s" id="talk">
-    <div class="wrap">
-      <h2 class="section-h">Proposed 10-minute talk</h2>
-      <p class="sub">“Trusting automated decisions: three ways to measure how often the numbers are wrong.”</p>
-      <ol class="talk">
-        <li><span class="t">0:00–1:00</span><div><b>The thread</b><span>Alerts, AI outputs and investment cases all fail in the same way: confidently and quietly.</span></div></li>
-        <li><span class="t">1:00–5:00</span><div><b>The alert system</b><span>Why five good detectors made a bad system, and how one false-alarm budget fixed it.</span></div></li>
-        <li><span class="t">5:00–8:00</span><div><b>The GenAI audit</b><span>The two errors the AI made on Pirelli, and the workflow we recommend for AI-assisted analysis.</span></div></li>
-        <li><span class="t">8:00–9:30</span><div><b>The stress-tested investment</b><span>What the redesign still delivers if it only half works.</span></div></li>
-        <li><span class="t">9:30–10:00</span><div><b>What I would bring</b><span>Engineering rigor, comfort with ambiguity, and the habit of checking the number before it reaches a decision.</span></div></li>
-      </ol>
-    </div>
-  </section>
 
   <section class="block-s">
     <div class="wrap">
