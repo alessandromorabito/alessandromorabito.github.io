@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alessandro Morabito – Student Talent Showcase</title>
+<meta name="description" content="Three projects on controlling error in models, alerts and AI, prepared by Alessandro Morabito for the J.P. Morgan × UIC Student Talent Showcase.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Alessandro Morabito – Student Talent Showcase">
+<meta property="og:description" content="Decisions you can defend: controlling error in models, alerts and AI. Three projects with code and case studies.">
+<meta property="og:url" content="https://alessandromorabito.github.io/showcase/">
+<meta property="og:image" content="https://alessandromorabito.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alessandromorabito.github.io/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F6F8;--surface:#FFFFFF;--ink:#121A2A;--muted:#586274;--rule:#DCE0E7;
+  --accent:#1E44A3;--accent-soft:#E6ECF8;--signal:#B4501A;--good:#1D7A52;
+  --display:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.2;text-wrap:balance;margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.kicker,.tag{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;margin:0 0 12px}
+
+.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;flex-wrap:wrap}
+.top .mark{font-family:var(--display);font-weight:600;font-size:18px;color:var(--ink);text-decoration:none}
+.top nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+.top nav a{color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--ink)}
+
+.intro{padding:56px 0 44px;border-bottom:1px solid var(--rule)}
+.intro-grid{display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start}
+.intro h1{font-size:clamp(32px,4.6vw,46px);margin-bottom:18px}
+.lede{font-size:19px;max-width:62ch;margin:0 0 12px}
+.intro p.more{max-width:64ch;color:var(--muted);margin:0}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--accent);border-radius:6px;font-weight:500;font-size:15px;text-decoration:none}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.ghost{color:var(--accent);background:transparent}
+.facts{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:18px 20px;font-size:14px}
+.facts dl{margin:0;display:grid;gap:12px}
+.facts dt{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.facts dd{margin:2px 0 0}
+.monogram{width:64px;height:64px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--display);font-size:24px;font-weight:600;margin-bottom:14px}
+
+section.block-s{padding:48px 0;border-bottom:1px solid var(--rule)}
+.section-h{font-size:28px;margin-bottom:6px}
+.sub{color:var(--muted);margin:0 0 24px;max-width:68ch}
+
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.pillar{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--accent);border-radius:8px;padding:18px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:8px}
+.pillar:hover{border-color:var(--accent)}
+.pillar .q{font-family:var(--display);font-size:19px;font-weight:600;line-height:1.3}
+.pillar .a{font-size:14.5px;color:var(--muted)}
+.pillar .w{font-family:var(--mono);font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-top:auto}
+
+.map{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--rule);border-radius:8px;overflow:hidden;font-size:14.5px}
+.map th,.map td{padding:12px 14px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+.map thead th{font-family:var(--mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:var(--paper)}
+.map tbody th{font-weight:600;width:24%}
+.map td{color:var(--muted);width:25.3%}
+.map td.on{color:var(--ink)}
+.map td.on::before{content:"●";color:var(--accent);margin-right:8px;font-size:11px;vertical-align:1px}
+.map td.part::before{content:"○";color:var(--accent);margin-right:8px;font-size:11px;vertical-align:1px}
+.map tr:last-child th,.map tr:last-child td{border-bottom:0}
+.table-scroll{overflow-x:auto}
+.map-note{font-size:13px;color:var(--muted);margin-top:10px}
+
+.case{padding:56px 0;border-bottom:1px solid var(--rule)}
+.case h2{font-size:clamp(25px,3.2vw,32px)}
+.verdict{font-size:18px;max-width:70ch;margin:14px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font-family:var(--mono);font-size:12px;border:1px solid var(--rule);background:var(--surface);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.case-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:36px;margin-top:28px}
+.blk{margin-bottom:22px}
+.blk h3{font-family:var(--body);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 8px}
+.blk p{margin:0 0 10px;max-width:65ch}
+.blk ul{margin:0;padding-left:18px}
+.blk li{margin-bottom:6px}
+.role{background:var(--accent-soft);border-left:3px solid var(--accent);padding:14px 16px;border-radius:0 6px 6px 0}
+.role p{margin:0}
+.transfer{border:1px solid var(--rule);border-left:3px solid var(--signal);background:var(--surface);padding:14px 16px;border-radius:0 6px 6px 0}
+.transfer p{margin:0}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.metric{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px 14px}
+.metric .v{font-family:var(--mono);font-size:21px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.2}
+.metric .l{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.4}
+figure{margin:0 0 16px;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.45}
+figcaption b{color:var(--ink);font-weight:600}
+.evidence{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.evidence a{font-family:var(--mono);font-size:13px;display:inline-flex;gap:6px;padding:7px 12px;border:1px solid var(--rule);background:var(--surface);border-radius:6px;text-decoration:none}
+.evidence a:hover{border-color:var(--accent)}
+
+.bars{display:grid;gap:10px;margin:6px 0 4px}
+.bar{display:grid;grid-template-columns:78px 1fr 44px;gap:10px;align-items:center;font-size:13.5px}
+.bar .track{background:var(--paper);border-radius:4px;height:16px;overflow:hidden}
+.bar .fill{height:100%;background:#A7AFBD;border-radius:4px}
+.bar.hi .fill{background:var(--accent)}
+.bar .n{font-family:var(--mono);font-size:13px;text-align:right}
+.ai-vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.ai-vs div{border:1px solid var(--rule);border-radius:6px;padding:10px 12px;font-size:14px;background:var(--paper)}
+.ai-vs .lbl{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);display:block;margin-bottom:4px}
+.ai-vs .bad{border-left:3px solid var(--signal)}
+.ai-vs .ok{border-left:3px solid var(--good)}
+
+.talk{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.talk li{display:grid;grid-template-columns:90px 1fr;gap:16px;padding:14px 4px;border-bottom:1px solid var(--rule)}
+.talk .t{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.talk b{display:block}
+.talk span{color:var(--muted);font-size:14.5px}
+
+.others{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.others a{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px;text-decoration:none;color:var(--ink);font-size:14.5px}
+.others a:hover{border-color:var(--accent)}
+.others a span{display:block;font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+
+footer{padding:36px 0 52px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .intro-grid,.case-grid{grid-template-columns:1fr}
+  .pillars,.others{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .wrap{padding:0 16px}
+  .metrics{grid-template-columns:1fr 1fr}
+  .ai-vs{grid-template-columns:1fr}
+  .talk li{grid-template-columns:1fr;gap:2px}
+}
+@media print{
+  .top,.actions,.evidence{display:none}
+  body{background:#fff}
+  .case,section.block-s{break-inside:avoid-page}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="../">Alessandro Morabito</a>
+    <nav aria-label="Sections">
+      <a href="#thread">The thread</a>
+      <a href="#map">Areas</a>
+      <a href="#projects">Projects</a>
+      <a href="#talk">Talk</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="intro">
+    <div class="wrap intro-grid">
+      <div>
+        <p class="kicker">J.P. Morgan × UIC Student Talent Showcase · December 2026</p>
+        <h1>Decisions you can defend: controlling error in models, alerts and AI.</h1>
+        <p class="lede">I am completing a double MSc in Supply Chain &amp; Operations Management (University of Illinois Chicago) and Management Engineering (Politecnico di Milano), graduating in 2027.</p>
+        <p class="more">The three projects below come from different courses but share one question I keep returning to: before a number drives a decision, how often is it wrong, and what does being wrong cost? Each project links to its code or its full case study.</p>
+        <div class="actions">
+          <a class="btn primary" href="../Alessandro_Morabito_Resume_JPM_Showcase.pdf">Résumé (PDF)</a>
+          <a class="btn ghost" href="https://github.com/alessandromorabito">GitHub</a>
+          <a class="btn ghost" href="../">Full portfolio</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/alessandro-morabito/">LinkedIn</a>
+        </div>
+      </div>
+      <aside class="facts" aria-label="Key facts">
+        <div class="monogram" aria-hidden="true">AM</div>
+        <dl>
+          <div><dt>Based in</dt><dd>Chicago, Illinois</dd></div>
+          <div><dt>Education</dt><dd>MSc SCOM, UIC Business School<br>MSc Management Engineering, Politecnico di Milano</dd></div>
+          <div><dt>Available</dt><dd>Full-time from June 2027</dd></div>
+          <div><dt>Toolkit</dt><dd>Python (NumPy, pandas, OpenCV, statsmodels), SQL, R, Excel modeling, GenAI</dd></div>
+          <div><dt>Languages</dt><dd>Italian (native), English (C1)</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block-s" id="thread">
+    <div class="wrap">
+      <h2 class="section-h">One thread, three kinds of error</h2>
+      <p class="sub">Each project asks a version of the same question in a different setting.</p>
+      <div class="pillars">
+        <a class="pillar" href="#alerts"><span class="q">When many detectors run at once, how many false alarms can you afford?</span><span class="a">An image-based monitoring system with five statistical charts and a single false-alarm budget.</span><span class="w">01 · Alerts</span></a>
+        <a class="pillar" href="#genai"><span class="q">When a GenAI tool writes the analysis, what does it get wrong?</span><span class="a">A three-company financial benchmark, run by hand and by AI, then audited line by line.</span><span class="w">02 · AI outputs</span></a>
+        <a class="pillar" href="#montecarlo"><span class="q">Before investing, how sure are we that the plan pays off?</span><span class="a">A Monte Carlo simulation of an operating-model redesign, stress-tested for under-delivery.</span><span class="w">03 · Investments</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block-s" id="map">
+    <div class="wrap">
+      <h2 class="section-h">Mapped to the showcase areas</h2>
+      <p class="sub">Where each project connects to the areas J.P. Morgan highlighted. These are academic projects outside banking; the table shows which skills and methods transfer.</p>
+      <div class="table-scroll">
+        <table class="map">
+          <thead><tr><th scope="col">Area</th><th scope="col">01 · Alert system</th><th scope="col">02 · GenAI audit</th><th scope="col">03 · Monte Carlo</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">AI &amp; Machine Learning in Financial Services</th><td class="on">Anomaly detection with PCA residuals and Hotelling T²</td><td class="part">Where a GenAI tool fails on financial analysis</td><td></td></tr>
+            <tr><th scope="row">Risk, Regulation &amp; Responsible AI</th><td class="on">Explicit false-positive budget; each alert carries a likely cause</td><td class="on">Human-in-the-loop workflow for AI-assisted analysis</td><td class="part">Stress test of the plan’s key assumptions</td></tr>
+            <tr><th scope="row">Analytics Using Generative AI for Business Decisions</th><td></td><td class="on">AI-written analysis compared with our own, error by error</td><td></td></tr>
+            <tr><th scope="row">Investment Banking Analytics</th><td></td><td class="on">Reclassified balance sheets and ratio benchmarking from nine annual reports</td><td class="part">NPV of a €457K investment</td></tr>
+            <tr><th scope="row">Quantitative Finance</th><td class="part">Multiple-testing control (Šidák), non-parametric limits</td><td></td><td class="on">Inverse-transform Monte Carlo with uncertainty on the result</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="map-note">● central to the project &nbsp; ○ part of the project</p>
+    </div>
+  </section>
+
+  <div id="projects"></div>
+
+  <!-- 01 ALERTS -->
+  <article class="case" id="alerts">
+    <div class="wrap">
+      <p class="tag">01 · Quality Data Analysis · Politecnico di Milano · Team of 4 · Top score</p>
+      <h2>An alert system that catches 14 of 15 defects with zero false alarms</h2>
+      <p class="verdict">Camera images of a robotic 3D-printing process feed five statistical charts, each watching a different failure mode. The hard part was not building the detectors. It was running them together without flooding the line with false alarms.</p>
+      <div class="chips"><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">SVD / PCA</span><span class="chip">Hotelling T²</span><span class="chip">Šidák / FWER</span></div>
+      <div class="case-grid">
+        <div>
+          <div class="blk role">
+            <h3>My role</h3>
+            <p>The team built two methods in parallel. I proposed the advanced one, drawn from the academic papers we were given, and built it from the image pipeline to the multi-chart network. It became the foundation of our final system.</p>
+          </div>
+          <div class="blk">
+            <h3>How it works</h3>
+            <ul>
+              <li>Learned “normal” from 132 images, then tested blind on 23 new ones with 15 real defects.</li>
+              <li>Combined five complementary charts: a non-parametric ECDF band, crack depth between layers, texture, PCA reconstruction error and a Hotelling T² on layer slopes.</li>
+              <li>Set <b>one false-alarm budget for the whole system</b> and split it across the charts with a Šidák correction, instead of tuning each chart on its own.</li>
+              <li>The first version caught only 3 of 15. The diagnosis: contrast normalization was hiding exactly the dark pixels that cracks produce, so the final system works on raw intensities.</li>
+            </ul>
+          </div>
+          <div class="blk transfer">
+            <h3>Why it transfers to a bank</h3>
+            <p>Transaction monitoring and fraud detection share the same structure: many detectors on noisy data, a limited capacity to review alerts, and a need to explain each one. The decision is how to spend the false-positive budget, not which single model is best.</p>
+          </div>
+          <div class="blk">
+            <h3>What I would check next</h3>
+            <p>With 23 test images the result is directional: 14 of 15 has a 95% interval of roughly 70% to 99%. The budget was also chosen after seeing the test set, so it should be confirmed on fresh data.</p>
+          </div>
+          <div class="evidence">
+            <a href="https://github.com/alessandromorabito/image-spc-anomaly-detection">Notebook and code ↗</a>
+            <a href="../#spc">Full case study ↗</a>
+          </div>
+        </div>
+        <div>
+          <div class="metrics">
+            <div class="metric"><div class="v num">3 → 14</div><div class="l">Defects caught out of 15, first design vs. final</div></div>
+            <div class="metric"><div class="v num">0 / 8</div><div class="l">False alarms on good parts in the blind test</div></div>
+            <div class="metric"><div class="v num">10%</div><div class="l">System-wide false-alarm budget chosen</div></div>
+          </div>
+          <figure>
+            <img src="img/spc_alert_budget.png" alt="Line chart: as the family-wise false-alarm budget rises from 1% to 20%, defects caught rise from 53% to 100%, while good parts passed stay at 100% up to a 10% budget and then fall to 87.5%." width="1400" height="780" loading="lazy">
+            <figcaption><b>Choosing the alert budget.</b> At the textbook 1–5%, the system misses a third to half of the defects. Above 10% it starts flagging good parts.</figcaption>
+          </figure>
+          <figure>
+            <img src="img/spc_alarm_heatmap.png" alt="Grid of five charts by 23 test images. Each of the 15 defective images triggers at least one chart except image 22; none of the 8 good images triggers any chart." width="2000" height="720" loading="lazy">
+            <figcaption><b>Which chart fired on which image.</b> The combination of charts points to the likely cause. Image 22 is the one defect the system missed.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 02 GENAI AUDIT -->
+  <article class="case" id="genai">
+    <div class="wrap">
+      <p class="tag">02 · Accounting, Finance &amp; Control · Politecnico di Milano · Team of 6 · Project lead</p>
+      <h2>Benchmarking Pirelli by hand, then auditing a GenAI analyst</h2>
+      <p class="verdict">We analyzed Pirelli against Michelin and Hankook from their 2022–2024 annual reports and explained the strategy behind every gap in the numbers. Then we ran the same analysis with a GenAI research tool and checked its work against ours.</p>
+      <div class="chips"><span class="chip">Financial statements</span><span class="chip">Ratio analysis</span><span class="chip">Benchmarking</span><span class="chip">GenAI governance</span></div>
+      <div class="case-grid">
+        <div>
+          <div class="blk role">
+            <h3>My role</h3>
+            <p>I led the project and carried a large share of the analysis: gathering data from nine annual reports, reclassifying the balance sheets, tracing each movement to its cause and building the narrative. I also worked on the prompt design and the final AI audit.</p>
+          </div>
+          <div class="blk">
+            <h3>What we found</h3>
+            <ul>
+              <li>Pirelli’s focus on high-value tyres pays off in margins (EBITDA margin 21.8% in 2024), and it has steadily reduced its long-term debt.</li>
+              <li>Liquidity is tight: a quick ratio below 1 in all three years, and payables stretched to 176 days, suggesting suppliers finance part of its working capital.</li>
+              <li>Hankook’s centralized production overtook both European rivals on margin by 2024.</li>
+            </ul>
+          </div>
+          <div class="blk transfer">
+            <h3>Why it transfers to a bank</h3>
+            <p>GenAI drafts analysis quickly and plausibly. The risk is not obvious nonsense but a confident conclusion built on the wrong ratio. Our recommendation: analysts own data gathering, validation and interpretation; AI supports synthesis and communication, with every figure traceable to a source.</p>
+          </div>
+          <div class="evidence">
+            <a href="../#genai">Full case study with charts ↗</a>
+          </div>
+        </div>
+        <div>
+          <div class="metrics">
+            <div class="metric"><div class="v num">9</div><div class="l">Annual reports and audited statements analyzed</div></div>
+            <div class="metric"><div class="v num">0.73</div><div class="l">Pirelli quick ratio, 2024</div></div>
+            <div class="metric"><div class="v num">2</div><div class="l">Material errors found in the AI’s analysis</div></div>
+          </div>
+          <figure>
+            <div class="ptitle" style="font-weight:600;font-size:14.5px">Days payables outstanding, 2024</div>
+            <div class="bars" role="img" aria-label="Days payables outstanding in 2024: Pirelli 176, Hankook 90, Michelin 79.">
+              <div class="bar hi"><span>Pirelli</span><span class="track"><span class="fill" style="width:88%;display:block"></span></span><span class="n">176</span></div>
+              <div class="bar"><span>Hankook</span><span class="track"><span class="fill" style="width:45%;display:block"></span></span><span class="n">90</span></div>
+              <div class="bar"><span>Michelin</span><span class="track"><span class="fill" style="width:39.5%;display:block"></span></span><span class="n">79</span></div>
+            </div>
+            <figcaption><b>Pirelli takes about twice as long as its peers to pay suppliers</b>, one of the signals that its liquidity is tighter than its margins suggest.</figcaption>
+          </figure>
+          <figure>
+            <div class="ptitle" style="font-weight:600;font-size:14.5px">Where the AI went wrong</div>
+            <div class="ai-vs">
+              <div class="bad"><span class="lbl">AI conclusion</span>Pirelli’s liquidity is “robust”, based on a current ratio slightly above 1.</div>
+              <div class="ok"><span class="lbl">Evidence</span>Excluding inventory, the quick ratio is about 0.7: liquidity is the main pressure point.</div>
+              <div class="bad"><span class="lbl">AI conclusion</span>Michelin is a pure high-value player.</div>
+              <div class="ok"><span class="lbl">Evidence</span>It is not; treating it as one distorts the comparison with Pirelli.</div>
+            </div>
+            <figcaption>The AI reached similar headline conclusions, which is what makes these errors easy to miss.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 03 MONTE CARLO -->
+  <article class="case" id="montecarlo">
+    <div class="wrap">
+      <p class="tag">03 · Capstone, Laboratory of Analysis and Modeling of Processes · Politecnico di Milano · Team of 5</p>
+      <h2>Testing a €457K redesign with Monte Carlo before spending it</h2>
+      <p class="verdict">A last-mile delivery provider was losing service to rescheduled deliveries. We redesigned its processes and information system, then simulated the result on the company’s own operating data before asking for the investment.</p>
+      <div class="chips"><span class="chip">Monte Carlo</span><span class="chip">Empirical distributions</span><span class="chip">NPV</span><span class="chip">Python</span><span class="chip">SAP Signavio</span></div>
+      <div class="case-grid">
+        <div>
+          <div class="blk role">
+            <h3>My role</h3>
+            <p>I led the process and organizational redesign, mapped the new processes in SAP Signavio, and worked on the financial feasibility (Monte Carlo and NPV), the KPI dashboard and the technology risk assessment.</p>
+          </div>
+          <div class="blk">
+            <h3>What we did</h3>
+            <ul>
+              <li>Fitted empirical distributions for delivery requests and five rescheduling causes on 1,390 cleaned crew-month records.</li>
+              <li>Simulated the current and redesigned process by inverse-transform sampling, measuring service effectiveness: customers served ÷ delivery requests.</li>
+              <li>Sized the investment at €457K and modeled NPV at a 10% cost of capital: payback in Year 2, about €2.5M cumulative by Year 3.</li>
+              <li>Rebuilt the simulation in Python and added a <b>stress test</b>: what if the redesign delivers only part of its targeted improvement?</li>
+            </ul>
+          </div>
+          <div class="blk transfer">
+            <h3>Why it transfers to a bank</h3>
+            <p>The question is the one behind any investment case: not “what is the expected outcome?” but “how wide is the range, and how much does the case depend on our assumptions?” Even at half the targeted improvement, mean effectiveness still rises by about two points.</p>
+          </div>
+          <div class="evidence">
+            <a href="https://github.com/alessandromorabito/logiflex-monte-carlo">Simulation code ↗</a>
+            <a href="../#logiflex">Full case study ↗</a>
+          </div>
+        </div>
+        <div>
+          <div class="metrics">
+            <div class="metric"><div class="v num">90% → 94%</div><div class="l">Mean service effectiveness, current vs. redesigned</div></div>
+            <div class="metric"><div class="v num">80% → 88%</div><div class="l">Worst 5% of months, current vs. redesigned</div></div>
+            <div class="metric"><div class="v num">17% → 50%</div><div class="l">Months meeting a 95% service target</div></div>
+          </div>
+          <figure>
+            <img src="img/logiflex_effectiveness.png" alt="Histogram of simulated service effectiveness: the redesigned process shifts the distribution right, with mean 94.4% against 90.2% today." width="1400" height="800" loading="lazy">
+            <figcaption><b>The redesign mainly cuts the bad tail.</b> 100,000 simulated crew-months per scenario (Python reproduction; the original Excel model with 1,000 runs gave 89.6% and 94.4%).</figcaption>
+          </figure>
+          <figure>
+            <img src="img/logiflex_stress_test.png" alt="Line chart: the share of months at or above 95% rises from 17% with no improvement to 28% at half of the targeted improvement and 50% at full delivery." width="1400" height="720" loading="lazy">
+            <figcaption><b>Stress test.</b> The benefit grows steadily with what the redesign actually delivers; it does not depend on hitting the target exactly.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <section class="block-s" id="talk">
+    <div class="wrap">
+      <h2 class="section-h">Proposed 10-minute talk</h2>
+      <p class="sub">“Trusting automated decisions: three ways to measure how often the numbers are wrong.”</p>
+      <ol class="talk">
+        <li><span class="t">0:00–1:00</span><div><b>The thread</b><span>Alerts, AI outputs and investment cases all fail in the same way: confidently and quietly.</span></div></li>
+        <li><span class="t">1:00–5:00</span><div><b>The alert system</b><span>Why five good detectors made a bad system, and how one false-alarm budget fixed it.</span></div></li>
+        <li><span class="t">5:00–8:00</span><div><b>The GenAI audit</b><span>The two errors the AI made on Pirelli, and the workflow we recommend for AI-assisted analysis.</span></div></li>
+        <li><span class="t">8:00–9:30</span><div><b>The stress-tested investment</b><span>What the redesign still delivers if it only half works.</span></div></li>
+        <li><span class="t">9:30–10:00</span><div><b>What I would bring</b><span>Engineering rigor, comfort with ambiguity, and the habit of checking the number before it reaches a decision.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block-s">
+    <div class="wrap">
+      <h2 class="section-h">Also in the portfolio</h2>
+      <p class="sub">Strategy, leadership and operations work, each with my role stated plainly.</p>
+      <div class="others">
+        <a href="../#loreal"><span>L’Oréal Brandstorm 2026</span>National semi-finalist with a luxury fragrance concept and business model</a>
+        <a href="../#socomec"><span>Socomec · Team lead of 7</span>Executive interviews on a shift from hardware to recurring service (30/30 cum laude)</a>
+        <a href="../#gerosa"><span>Gerosa Group</span>Why a €258M packaging group grew revenue while its margin shrank</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div>
+      <div style="font-family:var(--display);font-size:20px;color:var(--ink);font-weight:600">Thank you for reading.</div>
+      <div>Email: <a href="mailto:alemorabito4@gmail.com">alemorabito4@gmail.com</a></div>
+      <div>LinkedIn: <a href="https://www.linkedin.com/in/alessandro-morabito/">linkedin.com/in/alessandro-morabito</a></div>
+      <div>GitHub: <a href="https://github.com/alessandromorabito">github.com/alessandromorabito</a></div>
+    </div>
+    <div style="align-self:end">Full project reports available on request.</div>
+  </div>
+</footer>
+</body>
+</html>

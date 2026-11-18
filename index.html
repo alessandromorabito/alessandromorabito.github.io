@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alessandro Morabito – Portfolio</title>
 <meta name="description" content="Selected work in strategy, operations and applied analytics by Alessandro Morabito, double MSc candidate at UIC and Politecnico di Milano.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Alessandro Morabito – Portfolio">
+<meta property="og:description" content="Case studies in strategy, operations and applied analytics from a double MSc at UIC and Politecnico di Milano.">
+<meta property="og:url" content="https://alessandromorabito.github.io/">
+<meta property="og:image" content="https://alessandromorabito.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alessandromorabito.github.io/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
@@ -122,6 +131,9 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.2;text-wrap:ba
 .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:6px 0 4px}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
 .source{font-size:12.5px;color:var(--muted);margin-top:8px}
+.evidence{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.evidence a{font-family:var(--mono);font-size:13px;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--rule);background:var(--surface);border-radius:6px;text-decoration:none}
+.evidence a:hover{border-color:var(--accent)}
 
 /* Compact cases */
 .more{padding:56px 0;border-bottom:1px solid var(--rule)}
@@ -188,6 +200,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <div class="actions">
           <a class="btn primary" href="Alessandro_Morabito_Resume.pdf">View résumé</a>
           <a class="btn ghost" href="https://www.linkedin.com/in/alessandro-morabito/">LinkedIn</a>
+          <a class="btn ghost" href="https://github.com/alessandromorabito">GitHub</a>
           <a class="btn ghost" href="#contact">Contact</a>
         </div>
       </div>
@@ -197,7 +210,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <div><dt>Based in</dt><dd>Chicago, Illinois</dd></div>
           <div><dt>Education</dt><dd>MSc SCOM, UIC Business School<br>MSc Management Engineering, Politecnico di Milano</dd></div>
           <div><dt>Available</dt><dd>Full-time from June 2027</dd></div>
-          <div><dt>Toolkit</dt><dd>Python, SQL, R, Excel modeling, SAP Signavio (BPMN), GenAI</dd></div>
+          <div><dt>Toolkit</dt><dd>Python (NumPy, pandas, OpenCV), SQL, R, Excel modeling, SAP Signavio (BPMN), GenAI</dd></div>
           <div><dt>Languages</dt><dd>Italian (native), English (C1), Spanish and French (basic)</dd></div>
         </dl>
       </aside>
@@ -242,6 +255,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <p class="tag">01 · Capstone, Laboratory of Analysis and Modeling of Processes · Politecnico di Milano</p>
           <h2>Redesigning a €50M delivery provider, and proving it pays back in Year 2</h2>
           <p class="verdict">At a furniture delivery-and-assembly company, rescheduled deliveries were eroding service and slowing revenue growth. We rebuilt its processes, organization and information system, then tested the redesign on its own data before asking for a single euro.</p>
+          <div class="evidence"><a href="https://github.com/alessandromorabito/logiflex-monte-carlo">Simulation code on GitHub ↗</a></div>
         </div>
         <div class="chips"><span class="chip">Team of 5</span><span class="chip">Process redesign</span><span class="chip">Monte Carlo</span><span class="chip">NPV</span><span class="chip">SAP Signavio</span></div>
       </div>
@@ -259,7 +273,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
             <h3>What we did</h3>
             <ul>
               <li>Cleaned 1,483 crew-month records down to 1,390 and fitted empirical distributions for each rescheduling cause.</li>
-              <li>Ran 1,000 Monte Carlo simulations of the AS-IS and TO-BE processes to measure service effectiveness (customers served ÷ delivery requests).</li>
+              <li>Ran 1,000 Monte Carlo simulations of the AS-IS and TO-BE processes to measure service effectiveness (customers served ÷ delivery requests). I later rebuilt the model in Python and stress-tested it: even if the redesign delivers only half of its targeted improvement, mean effectiveness still rises by about two points.</li>
               <li>Redesigned planning: quarterly crew, fleet and equipment sizing per hub, re-forecast monthly, tracked by a forecast-accuracy KPI.</li>
               <li>Built a 7-KPI dashboard with owners and targets, and scored the redesign’s impact at 3.76 out of 5.</li>
               <li>Sized the investment at €457K within a €500K budget and modeled NPV at a 10% cost of capital, with sensitivity analysis.</li>
@@ -297,6 +311,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <p class="tag">02 · Quality Data Analysis · Politecnico di Milano</p>
           <h2>Catching 14 of 15 defects without a single false alarm</h2>
           <p class="verdict">The brief came from an off-Earth manufacturing scenario: robotic 3D printing of composite structures in orbit or on the Moon, where no technician can inspect the parts. We had to turn camera images into metrics and control charts that flag defects on their own. The core difficulty is one every risk team knows: more sensors mean more false alarms, unless you control the error rate across all of them.</p>
+          <div class="evidence"><a href="https://github.com/alessandromorabito/image-spc-anomaly-detection">Notebook and code on GitHub ↗</a></div>
         </div>
         <div class="chips"><span class="chip">Team of 4</span><span class="chip">Top score</span><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">SVD / PCA</span><span class="chip">Hotelling T²</span></div>
       </div>
@@ -323,6 +338,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <div class="block">
             <h3>Why it matters beyond manufacturing</h3>
             <p>The same logic applies to fraud, transaction and model monitoring: many detectors running in parallel, and a business that tolerates only a set number of false positives.</p>
+          </div>
+          <div class="block">
+            <h3>What I would check next</h3>
+            <p>With 23 test images the result is directional rather than precise: 14 of 15 detected has a 95% confidence interval of roughly 70% to 99%. And because the false-alarm budget was chosen after seeing the test set, the next step would be to confirm it on fresh data.</p>
           </div>
         </div>
         <div>
@@ -673,6 +692,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div style="font-family:var(--display);font-size:20px;color:var(--ink);font-weight:600">Let’s talk.</div>
       <div>Email: <a href="mailto:alemorabito4@gmail.com">alemorabito4@gmail.com</a></div>
       <div>LinkedIn: <a href="https://www.linkedin.com/in/alessandro-morabito/">linkedin.com/in/alessandro-morabito</a></div>
+      <div>GitHub: <a href="https://github.com/alessandromorabito">github.com/alessandromorabito</a></div>
     </div>
     <div style="align-self:end">Full project reports available on request.</div>
   </div>
